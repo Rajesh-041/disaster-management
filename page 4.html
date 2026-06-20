@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Cities and Tamil Nadu Districts Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(3, 3, 52);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(3, 3, 52);
+            color: white;
+            text-align: center;
+        }
+        #container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            background-color: rgb(26, 26, 82);
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .error {
+            color: red;
+        }
+        .info {
+            color: lightgreen;
+        }
+        .hea {
+                background-color: rgb(92, 15, 15);
+                color: white;
+                text-align: center;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 48px;
+                font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="hea"><hr>RESOURCE CAMP<hr></h1>
+    </header>
+        <h1>India Cities & Tamil Nadu Districts Information</h1>
+    <div id="container">
+        <h2>Select a Location</h2>
+        <select id="locationDropdown">
+            <option value="" disabled selected>Select a location</option>
+        </select>
+        <button onclick="fetchLocationInfo()">Get Info</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const locations = [
+            { name: "Chennai", type: "District", population: "7.1 million", weather: "Sunny, 30°C", areaStatus: "Disaster-Prone" },
+            { name: "Coimbatore", type: "District", population: "3.5 million", weather: "Cloudy, 25°C", areaStatus: "Safe" },
+            { name: "Madurai", type: "District", population: "3.0 million", weather: "Sunny, 32°C", areaStatus: "Safe" },
+            { name: "Salem", type: "District", population: "3.4 million", weather: "Hot, 33°C", areaStatus: "Safe" },
+            { name: "Tiruchirappalli", type: "District", population: "2.7 million", weather: "Pleasant, 28°C", areaStatus: "Safe" },
+            { name: "Erode", type: "District", population: "2.2 million", weather: "Hot, 35°C", areaStatus: "Safe" },
+            { name: "Thanjavur", type: "District", population: "2.4 million", weather: "Humid, 29°C", areaStatus: "Safe" },
+            { name: "Dindigul", type: "District", population: "2.1 million", weather: "Pleasant, 27°C", areaStatus: "Safe" },
+            { name: "Kanyakumari", type: "District", population: "1.8 million", weather: "Humid, 30°C", areaStatus: "Safe" },
+            { name: "Tirunelveli", type: "District", population: "1.6 million", weather: "Sunny, 33°C", areaStatus: "Safe" },
+            
+            { name: "Mumbai", type: "City", population: "12.4 million", weather: "Rainy, 27°C", areaStatus: "Disaster-Prone" },
+            { name: "Delhi", type: "City", population: "18.9 million", weather: "Hazy, 29°C", areaStatus: "Safe" },
+            { name: "Bangalore", type: "City", population: "8.5 million", weather: "Cloudy, 25°C", areaStatus: "Safe" },
+            { name: "Hyderabad", type: "City", population: "6.9 million", weather: "Sunny, 32°C", areaStatus: "Safe" },
+            { name: "Kolkata", type: "City", population: "14.1 million", weather: "Humid, 31°C", areaStatus: "Disaster-Prone" },
+            { name: "Pune", type: "City", population: "3.1 million", weather: "Pleasant, 24°C", areaStatus: "Safe" },
+            { name: "Jaipur", type: "City", population: "3.1 million", weather: "Sunny, 36°C", areaStatus: "Safe" },
+            { name: "Lucknow", type: "City", population: "3.5 million", weather: "Hot, 35°C", areaStatus: "Safe" },
+            { name: "Ahmedabad", type: "City", population: "5.6 million", weather: "Hot, 38°C", areaStatus: "Disaster-Prone" },
+            { name: "Surat", type: "City", population: "6.1 million", weather: "Sunny, 34°C", areaStatus: "Safe" },
+        ];
+
+        const locationDropdown = document.getElementById('locationDropdown');
+        locations.forEach(location => {
+            const option = document.createElement('option');
+            option.value = location.name;
+            option.textContent = location.name;
+            locationDropdown.appendChild(option);
+        });
+
+        function fetchLocationInfo() {
+            const locationName = locationDropdown.value;
+            const outputDiv = document.getElementById('output');
+
+            outputDiv.innerHTML = '';
+
+            if (!locationName) {
+                outputDiv.innerHTML = '<p class="error">Please select a location!</p>';
+                return;
+            }
+
+            const locationData = locations.find(location => location.name === locationName);
+
+            if (locationData) {
+                outputDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${locationData.name}</p>
+                    <p><strong>Type:</strong> ${locationData.type}</p>
+                    <p><strong>Population:</strong> ${locationData.population}</p>
+                    <p><strong>Weather:</strong> ${locationData.weather}</p>
+                    <p><strong>Status:</strong> ${
+                        locationData.areaStatus === 'Disaster-Prone' 
+                        ? '<span style="color: red;">Disaster-Prone Area</span>' 
+                        : '<span style="color: green;">Safe Area</span>'
+                    }</p>
+                `;
+            } else {
+                outputDiv.innerHTML = '<p class="error">No information available for the selected location.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

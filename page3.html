@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RESOURCE CAMP</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: rgb(3, 3, 52);
+                color: white;
+                text-align: center;
+            }
+            .hea {
+                background-color: rgb(92, 15, 15);
+                color: white;
+                text-align: center;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 48px;
+                font-weight: bold;
+            }
+            #camp-box {
+                background-color: white;
+                color: black;
+                width: 1450px;
+                margin: 20px auto;
+                padding: 20px;
+                border-radius: 10px;
+                display: flex; 
+                justify-content: space-between; 
+                align-items: flex-start; 
+            }
+            .camp {
+                background-color: rgb(3, 3, 52);
+                color: white;
+                width: 30%;
+                margin: 5px;
+                padding: 15px;
+                border-radius: 5px;
+                text-align: left;
+                font-size: 25px;
+                height: 270px;
+            }
+            footer {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+            a {
+                color: #FF3366;
+                text-decoration: none;
+            }
+            #foot{
+                font-size: 25px;
+            }
+        </style>
+        <script>
+            function updateInformation() {
+                const camps = document.getElementsByClassName('camp');
+                
+                for (let i = 0; i < camps.length; i++) {
+                    const peopleCount = Math.floor(Math.random() * 300) + 50; 
+                    const foodRequirement = peopleCount + Math.floor(Math.random() * 100); 
+                    const waterBottleRequirement = Math.floor(Math.random() * 500) + 100; 
+                    const clothRequirement = Math.floor(Math.random() * 200) + 50; 
+                    
+                    camps[i].innerHTML = `
+                        <strong>Camp ${i + 1}</strong><br><br>
+                        People Count: ${peopleCount}<br><br>
+                        Food Requirement: ${foodRequirement} Meals<br><br>
+                        Water Bottle Requirement: ${waterBottleRequirement} Bottles<br><br>
+                        Cloth Requirement: ${clothRequirement} Sets
+                    `;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1 class="hea"><hr>RESOURCE CAMP<hr></h1>
+        </header>
+        <div>
+            <label for="places">Select Place:</label>
+            <select id="places" name="places">
+                <option value="place1">Place 1</option>
+                <option value="place2">Place 2</option>
+                <option value="place3">Place 3</option>
+            </select>
+        </div><br>
+        <div>
+            <label for="areas">Select Area:</label>
+            <select id="areas" name="areas">
+                <option value="area1">Area 1</option>
+                <option value="area2">Area 2</option>
+                <option value="area3">Area 3</option>
+                <option value="area4">Area 4</option>
+                <option value="area5">Area 5</option>
+                <option value="area6">Area 6</option>
+                <option value="area7">Area 7</option>
+            </select>
+        </div><br>
+        <button onclick="updateInformation()">Submit</button><br><br>
+        <div id="camp-box">
+            <div class="camp">
+                <strong>Camp 1</strong><br><br>
+                People Count: 150<br><br>
+                Food Requirement: 200 Meals<br><br>
+                Water Bottle Requirement: 300 Bottles<br><br>
+                Cloth Requirement: 100 Sets
+            </div>
+            <div class="camp">
+                <strong>Camp 2</strong><br><br>
+                People Count: 100<br><br>
+                Food Requirement: 150 Meals<br><br>
+                Water Bottle Requirement: 200 Bottles<br><br>
+                Cloth Requirement: 80 Sets
+            </div>
+            <div class="camp">
+                <strong>Camp 3</strong><br><br>
+                People Count: 120<br><br>
+                Food Requirement: 180 Meals<br><br>
+                Water Bottle Requirement: 250 Bottles<br><br>
+                Cloth Requirement: 90 Sets
+            </div>
+        </div>
+        <footer id="foot">
+            <a href="https://www.donationwebsite.com" target="_blank">Visit Donation Website</a>
+        </footer>
+    </body>
+</html>
